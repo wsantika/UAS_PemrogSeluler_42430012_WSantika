@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.harleycatalog.R
 import com.example.harleycatalog.adapter.MotorAdapter
 import com.example.harleycatalog.utils.MotorUtils
+import android.content.Intent
+import android.widget.Button
+import com.example.harleycatalog.ui.form.FormActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,5 +28,11 @@ class MainActivity : AppCompatActivity() {
 
         rvMotor.layoutManager = LinearLayoutManager(this)
         rvMotor.adapter = adapter
+
+        val btnAdd = findViewById<Button>(R.id.btnAdd)
+        btnAdd.setOnClickListener {
+            startActivity(Intent(this, FormActivity::class.java))
+        }
     }
+
 }
