@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.harleycatalog.R
 import com.example.harleycatalog.model.Motor
 
-class MotorAdapter(private val motorList: ArrayList<Motor>) :
-    RecyclerView.Adapter<MotorAdapter.ViewHolder>() {
+class MotorAdapter(
+    private val motorList: ArrayList<Motor>,
+    private val onClick: (Motor) -> Unit
+) : RecyclerView.Adapter<MotorAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.tvName)
@@ -29,8 +31,13 @@ class MotorAdapter(private val motorList: ArrayList<Motor>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val motor = motorList[position]
+
         holder.tvName.text = motor.name
         holder.tvType.text = motor.type
         holder.tvYear.text = motor.year.toString()
+
+        holder.itemView.setOnClickListener {
+            onClick(motor)
+        }
     }
 }
