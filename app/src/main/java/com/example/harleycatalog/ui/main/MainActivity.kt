@@ -10,6 +10,7 @@ import com.example.harleycatalog.utils.MotorUtils
 import android.content.Intent
 import android.widget.Button
 import com.example.harleycatalog.ui.form.FormActivity
+import com.example.harleycatalog.ui.detail.DetailActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,10 +25,23 @@ class MainActivity : AppCompatActivity() {
 
         val motorList = MotorUtils.getMotorList()
 
-        adapter = MotorAdapter(motorList)
+        adapter = MotorAdapter(motorList) { motor ->
+            val intent = Intent(this, DetailActivity::class.java)
+
+            intent.putExtra("name", motor.name)
+            intent.putExtra("type", motor.type)
+            intent.putExtra("year", motor.year)
+            intent.putExtra("price", motor.price)
+            intent.putExtra("engineCC", motor.engineCC)
+            intent.putExtra("description", motor.description)
+
+            startActivity(intent)
+        }
 
         rvMotor.layoutManager = LinearLayoutManager(this)
         rvMotor.adapter = adapter
+
+
 
         val btnAdd = findViewById<Button>(R.id.btnAdd)
         btnAdd.setOnClickListener {
