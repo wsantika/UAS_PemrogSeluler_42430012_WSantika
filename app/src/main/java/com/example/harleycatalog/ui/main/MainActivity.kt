@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         val etSearch = findViewById<EditText>(R.id.etSearch)
         val btnAdd = findViewById<Button>(R.id.btnAdd)
         val btnSortAZ = findViewById<Button>(R.id.btnSortAZ)
+        val btnSortZA = findViewById<Button>(R.id.btnSortZA)
+
 
         motorList = MotorUtils.getMotorList()
         filteredList = ArrayList(motorList)
@@ -84,6 +86,21 @@ class MainActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
         }
 
+        btnSortZA.setOnClickListener {
+            val keyword = etSearch.text.toString().lowercase()
+
+            bubbleSortDescending(motorList)
+
+            filteredList.clear()
+            for (motor in motorList) {
+                if (motor.name.lowercase().contains(keyword)) {
+                    filteredList.add(motor)
+                }
+            }
+
+            adapter.notifyDataSetChanged()
+        }
+
         btnAdd.setOnClickListener {
             startActivity(Intent(this, FormActivity::class.java))
         }
@@ -93,6 +110,18 @@ class MainActivity : AppCompatActivity() {
         for (i in 0 until list.size - 1) {
             for (j in 0 until list.size - i - 1) {
                 if (list[j].name.lowercase() > list[j + 1].name.lowercase()) {
+                    val temp = list[j]
+                    list[j] = list[j + 1]
+                    list[j + 1] = temp
+                }
+            }
+        }
+    }
+
+    private fun bubbleSortDescending(list: ArrayList<Motor>) {
+        for (i in 0 until list.size - 1) {
+            for (j in 0 until list.size - i - 1) {
+                if (list[j].name.lowercase() < list[j + 1].name.lowercase()) {
                     val temp = list[j]
                     list[j] = list[j + 1]
                     list[j + 1] = temp
