@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         rvMotor = findViewById(R.id.rvMotor)
         val etSearch = findViewById<EditText>(R.id.etSearch)
         val btnAdd = findViewById<Button>(R.id.btnAdd)
+        val btnSortAZ = findViewById<Button>(R.id.btnSortAZ)
 
         motorList = MotorUtils.getMotorList()
         filteredList = ArrayList(motorList)
@@ -68,8 +69,35 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        btnSortAZ.setOnClickListener {
+            val keyword = etSearch.text.toString().lowercase()
+
+            bubbleSortAscending(motorList)
+
+            filteredList.clear()
+            for (motor in motorList) {
+                if (motor.name.lowercase().contains(keyword)) {
+                    filteredList.add(motor)
+                }
+            }
+
+            adapter.notifyDataSetChanged()
+        }
+
         btnAdd.setOnClickListener {
             startActivity(Intent(this, FormActivity::class.java))
+        }
+    }
+
+    private fun bubbleSortAscending(list: ArrayList<Motor>) {
+        for (i in 0 until list.size - 1) {
+            for (j in 0 until list.size - i - 1) {
+                if (list[j].name.lowercase() > list[j + 1].name.lowercase()) {
+                    val temp = list[j]
+                    list[j] = list[j + 1]
+                    list[j + 1] = temp
+                }
+            }
         }
     }
 }
