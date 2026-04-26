@@ -6,13 +6,13 @@ import com.example.harleycatalog.R
 import android.widget.EditText
 import android.widget.Button
 import android.widget.Toast
-import kotlin.toString
 
 class FormActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_form)
+
         val etName = findViewById<EditText>(R.id.etName)
         val etType = findViewById<EditText>(R.id.etType)
         val etYear = findViewById<EditText>(R.id.etYear)
@@ -23,12 +23,12 @@ class FormActivity : AppCompatActivity() {
 
         btnSave.setOnClickListener {
 
-            val name = etName.text.toString()
-            val type = etType.text.toString()
-            val yearText = etYear.text.toString()
-            val priceText = etPrice.text.toString()
-            val ccText = etCC.text.toString()
-            val desc = etDesc.text.toString()
+            val name = etName.text.toString().trim()
+            val type = etType.text.toString().trim()
+            val yearText = etYear.text.toString().trim()
+            val priceText = etPrice.text.toString().trim()
+            val ccText = etCC.text.toString().trim()
+            val desc = etDesc.text.toString().trim()
 
             // VALIDASI
             if (name.isEmpty()) {
@@ -61,14 +61,32 @@ class FormActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // KONVERSI (pakai try-catch nanti bisa kita upgrade)
-            val year = yearText.toInt()
-            val price = priceText.toInt()
-            val cc = ccText.toInt()
+            // TRY-CATCH ERROR HANDLING
+            try {
+                val year = yearText.toInt()
+                val price = priceText.toInt()
+                val cc = ccText.toInt()
 
-            Toast.makeText(this, "Data berhasil divalidasi!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Data berhasil divalidasi!",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            } catch (e: NumberFormatException) {
+                Toast.makeText(
+                    this,
+                    "Tahun, harga, dan CC harus berupa angka yang valid",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            } catch (e: Exception) {
+                Toast.makeText(
+                    this,
+                    "Terjadi kesalahan: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
-
-
 }
