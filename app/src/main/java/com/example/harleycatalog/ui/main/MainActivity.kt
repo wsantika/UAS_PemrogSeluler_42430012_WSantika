@@ -15,8 +15,13 @@ import com.example.harleycatalog.model.Motor
 import com.example.harleycatalog.ui.detail.DetailActivity
 import com.example.harleycatalog.ui.form.FormActivity
 import com.example.harleycatalog.utils.MotorUtils
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        private const val TAG = "42430012"
+    }
 
     private lateinit var rvMotor: RecyclerView
     private lateinit var adapter: MotorAdapter
@@ -26,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Log.d(TAG, "MainActivity dibuka")
 
         rvMotor = findViewById(R.id.rvMotor)
         val etSearch = findViewById<EditText>(R.id.etSearch)
@@ -37,7 +43,11 @@ class MainActivity : AppCompatActivity() {
         motorList = MotorUtils.getMotorList()
         filteredList = ArrayList(motorList)
 
+        Log.d(TAG, "Data motor berhasil dimuat: ${motorList.size} data")
+
         adapter = MotorAdapter(filteredList) { motor ->
+
+            Log.d(TAG, "Motor dipilih: ${motor.name}")
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra("name", motor.name)
             intent.putExtra("type", motor.type)
@@ -52,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         rvMotor.adapter = adapter
 
         etSearch.addTextChangedListener(object : TextWatcher {
+
             override fun afterTextChanged(s: Editable?) {}
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -67,11 +78,14 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
+                Log.d(TAG, "Pencarian dijalankan dengan keyword: $keyword, hasil: ${filteredList.size}")
                 adapter.notifyDataSetChanged()
             }
         })
 
         btnSortAZ.setOnClickListener {
+
+            Log.d(TAG, "Sorting A-Z dijalankan")
             val keyword = etSearch.text.toString().lowercase()
 
             bubbleSortAscending(motorList)
@@ -87,6 +101,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnSortZA.setOnClickListener {
+
+            Log.d(TAG, "Sorting Z-A dijalankan")
             val keyword = etSearch.text.toString().lowercase()
 
             bubbleSortDescending(motorList)
@@ -102,6 +118,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnAdd.setOnClickListener {
+            Log.d(TAG, "Tombol tambah motor ditekan")
             startActivity(Intent(this, FormActivity::class.java))
         }
     }
