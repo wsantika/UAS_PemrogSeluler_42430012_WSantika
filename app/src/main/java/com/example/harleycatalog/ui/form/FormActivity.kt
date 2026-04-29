@@ -6,13 +6,18 @@ import com.example.harleycatalog.R
 import android.widget.EditText
 import android.widget.Button
 import android.widget.Toast
+import android.util.Log
 
 class FormActivity : AppCompatActivity() {
 
+    companion object {
+        private const val TAG = "42430012"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_form)
 
+        Log.d(TAG, "FormActivity dibuka")
         val etName = findViewById<EditText>(R.id.etName)
         val etType = findViewById<EditText>(R.id.etType)
         val etYear = findViewById<EditText>(R.id.etYear)
@@ -23,6 +28,7 @@ class FormActivity : AppCompatActivity() {
 
         btnSave.setOnClickListener {
 
+            Log.d(TAG, "Tombol simpan ditekan")
             val name = etName.text.toString().trim()
             val type = etType.text.toString().trim()
             val yearText = etYear.text.toString().trim()
@@ -66,6 +72,8 @@ class FormActivity : AppCompatActivity() {
                 val year = yearText.toInt()
                 val price = priceText.toInt()
                 val cc = ccText.toInt()
+
+                Log.d(TAG, "Input berhasil dikonversi: year=$year, price=$price, cc=$cc")
 
                 Toast.makeText(
                     this,
