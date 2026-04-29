@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("price", motor.price)
             intent.putExtra("engineCC", motor.engineCC)
             intent.putExtra("description", motor.description)
+            intent.putExtra("imageResId", motor.imageResId)
             startActivity(intent)
         }
 

@@ -3,6 +3,7 @@ package com.example.harleycatalog.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.harleycatalog.R
@@ -14,6 +15,7 @@ class MotorAdapter(
 ) : RecyclerView.Adapter<MotorAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imgMotor: ImageView = itemView.findViewById(R.id.imgMotor)
         val tvName: TextView = itemView.findViewById(R.id.tvName)
         val tvType: TextView = itemView.findViewById(R.id.tvType)
         val tvYear: TextView = itemView.findViewById(R.id.tvYear)
@@ -32,9 +34,10 @@ class MotorAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val motor = motorList[position]
 
+        holder.imgMotor.setImageResource(motor.imageResId)
         holder.tvName.text = motor.name
         holder.tvType.text = motor.type
-        holder.tvYear.text = motor.year.toString()
+        holder.tvYear.text = "Tahun: ${motor.year}"
 
         holder.itemView.setOnClickListener {
             onClick(motor)
