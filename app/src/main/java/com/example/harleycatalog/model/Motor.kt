@@ -6,5 +6,6 @@ data class Motor(
     val year: Int,
     val price: Int,
     val engineCC: Int,
-    val description: String
+    val description: String,
+    val imageResId: Int,
 )
