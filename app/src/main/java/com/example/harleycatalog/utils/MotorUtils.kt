@@ -1,5 +1,6 @@
 package com.example.harleycatalog.utils
 import com.example.harleycatalog.model.Motor
+import com.example.harleycatalog.R
 
 object MotorUtils {
 
@@ -8,45 +9,49 @@ object MotorUtils {
 
         list.add(
             Motor(
-                name = "Iron 883",
+                name = "WLA 750",
+                type = "Classic Military",
+                year = 1942,
+                price = 450000000,
+                engineCC = 740,
+                description = "Harley era perang dunia dengan desain militer klasik dan karakter mesin vintage.",
+                imageResId = R.drawable.wla750
+            )
+        )
+
+        list.add(
+            Motor(
+                name = "EL Knucklehead",
+                type = "Classic",
+                year = 1936,
+                price = 850000000,
+                engineCC = 1000,
+                description = "Salah satu Harley legendaris dengan mesin Knucklehead yang sangat ikonik.",
+                imageResId = R.drawable.elknucklehead
+            )
+        )
+
+        list.add(
+            Motor(
+                name = "FL Panhead",
                 type = "Cruiser",
-                year = 2021,
-                price = 350000000,
-                engineCC = 883,
-                description = "Motor klasik dengan desain minimalis dan tenaga besar."
+                year = 1948,
+                price = 780000000,
+                engineCC = 1200,
+                description = "Model klasik dengan mesin Panhead, terkenal nyaman untuk touring jarak jauh.",
+                imageResId = R.drawable.flpanhead
             )
         )
 
         list.add(
             Motor(
-                name = "Street 750",
-                type = "Street",
-                year = 2020,
-                price = 300000000,
-                engineCC = 750,
-                description = "Motor entry-level Harley dengan handling ringan."
-            )
-        )
-
-        list.add(
-            Motor(
-                name = "Fat Bob",
-                type = "Cruiser",
-                year = 2022,
-                price = 600000000,
-                engineCC = 1868,
-                description = "Motor agresif dengan tampilan modern dan performa tinggi."
-            )
-        )
-
-        list.add(
-            Motor(
-                name = "Sportster S",
-                type = "Sport",
-                year = 2023,
+                name = "Hydra-Glide",
+                type = "Touring Classic",
+                year = 1955,
                 price = 700000000,
-                engineCC = 1250,
-                description = "Motor sport modern dengan teknologi terbaru Harley."
+                engineCC = 1200,
+                description = "Harley klasik dengan suspensi depan hydraulic yang menjadi ciri khas masanya.",
+                imageResId = R.drawable.hydraglide
             )
         )
 
@@ -57,18 +62,68 @@ object MotorUtils {
                 year = 2022,
                 price = 900000000,
                 engineCC = 1746,
-                description = "Motor touring jarak jauh dengan kenyamanan maksimal."
+                description = "Motor touring jarak jauh dengan kenyamanan maksimal.",
+                imageResId = R.drawable.roadglide
             )
         )
 
         list.add(
             Motor(
-                name = "Pan America 1250",
-                type = "Adventure",
-                year = 2023,
-                price = 800000000,
-                engineCC = 1250,
-                description = "Motor adventure Harley untuk berbagai medan."
+                name = "Sportster XLH",
+                type = "Sportster",
+                year = 1965,
+                price = 420000000,
+                engineCC = 900,
+                description = "Sportster klasik dengan bobot lebih ringan dan karakter mesin yang responsif.",
+                imageResId = R.drawable.sportsterxlh
+            )
+        )
+
+        list.add(
+            Motor(
+                name = "Electra Glide FLH",
+                type = "Touring",
+                year = 1969,
+                price = 650000000,
+                engineCC = 1200,
+                description = "Harley touring klasik dengan gaya besar, nyaman, dan tampilan elegan.",
+                imageResId = R.drawable.electraglide
+            )
+        )
+
+        list.add(
+            Motor(
+                name = "Super Glide FX",
+                type = "Cruiser",
+                year = 1971,
+                price = 520000000,
+                engineCC = 1200,
+                description = "Model awal Super Glide dengan gaya custom factory yang sporty untuk zamannya.",
+                imageResId = R.drawable.superglidefx
+            )
+        )
+
+        list.add(
+            Motor(
+                name = "Sportster XLCH",
+                type = "Sportster",
+                year = 1974,
+                price = 380000000,
+                engineCC = 1000,
+                description = "Sportster lawas dengan karakter agresif, cocok untuk penggemar Harley klasik ringan.",
+                imageResId = R.drawable.sportsterxlch
+            )
+        )
+
+        list.add(
+            Motor(
+                name = "Low Rider FXS",
+                type = "Cruiser",
+                year = 1977,
+                price = 560000000,
+                engineCC = 1200,
+                description = "Cruiser klasik dengan posisi berkendara rendah dan gaya custom khas era 70-an.",
+                imageResId = R.drawable.lowriderfxs
             )
         )
 
